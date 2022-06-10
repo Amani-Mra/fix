@@ -168,6 +168,14 @@ func (app *MarketDataRequest) onMarketDataIncrementalRefresh(msg *quickfix.Messa
 			quickfix.GroupElement(tag.MDEntryPx),
 			quickfix.GroupElement(tag.MDEntrySize),
 			quickfix.GroupElement(tag.OrderID),
+			quickfix.GroupElement(tag.Text),
+			quickfix.GroupElement(tag.TradeID),
+			quickfix.GroupElement(tag.MDEntryTime),
+			quickfix.GroupElement(tag.MDEntryDate),
+			quickfix.GroupElement(tag.TradeCondition),
+			quickfix.GroupElement(tag.OpenCloseSettlFlag),
+			quickfix.GroupElement(tag.MDUpdateAction),
+			quickfix.GroupElement(tag.Symbol),
 		},
 	)
 	msg.Body.GetGroup(group)
@@ -185,9 +193,10 @@ type Messager interface {
 
 var (
 	type2sym = map[string]string{
-		"Bid":   "+",
-		"Trade": "=",
-		"Offer": "-",
+		"Bid":          "+",
+		"Trade":        "=",
+		"Offer":        "-",
+		"OpeningPrice": "*",
 	}
 )
 
